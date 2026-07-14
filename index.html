@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librería y Papelería Eliza | Material Escolar al mejor precio</title>
+    <!-- Tailwind CSS para diseño moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter para legibilidad premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos limpios de e-commerce -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1', // Indigo moderno
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            accent: '#f59e0b' // Ámbar para conversión
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+        }
+        /* Animaciones para el carrito lateral (Drawer) */
+        .drawer-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Custom scrollbar para el carrito */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-2">
+                <div class="bg-gradient-to-tr from-brand-600 to-indigo-400 text-white p-2 rounded-lg shadow-md shadow-brand-500/20">
+                    <i class="fa-solid fa-book-open text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-lg font-extrabold tracking-tight text-slate-900 leading-none">Librería Eliza</span>
+                    <span class="text-[10px] font-semibold text-brand-500 tracking-wider uppercase mt-1">Papelería Escolar</span>
+                </div>
+            </a>
+
+            <!-- Navigation Actions -->
+            <div class="flex items-center space-x-4">
+                <a href="#catalogo" class="hidden md:inline-flex text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">
+                    Catálogo
+                </a>
+                <a href="#contacto" class="hidden md:inline-flex text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">
+                    Ubicación
+                </a>
+                
+                <!-- Cart Button -->
+                <button onclick="toggleCart(true)" class="relative p-2.5 text-slate-700 hover:text-brand-600 hover:bg-slate-50 rounded-xl transition-all duration-200 focus:outline-none" aria-label="Abrir carrito">
+                    <i class="fa-solid fa-basket-shopping text-2xl"></i>
+                    <!-- Cart Indicator Badge -->
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-accent text-slate-950 font-bold text-xs h-5 w-5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all duration-300">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gradient-to-b from-indigo-50/50 via-white to-white overflow-hidden py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Content -->
+                <div class="space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-indigo-50 border border-indigo-100 text-brand-700 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+                        <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Pedidos rápidos por WhatsApp</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-none">
+                        Todo tu material escolar, <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-500">fácil y al instante.</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 font-medium">
+                        Compra tus útiles escolares sin filas en <strong class="text-slate-900">Librería y Papelería Eliza</strong>. Haz tu pedido online y recíbelo de forma rápida o retíralo listo para llevar.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#catalogo" class="inline-flex items-center justify-center px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-2xl shadow-xl shadow-brand-500/25 transform hover:-translate-y-0.5 transition-all duration-200">
+                            Ver Productos Estrella
+                            <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/59163485158?text=Hola%20Librería%20Eliza,%20deseo%20hacer%20una%20consulta." target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-800 font-bold rounded-2xl border-2 border-slate-200/80 hover:border-slate-300 shadow-sm transition-all duration-200">
+                            <i class="fa-brands fa-whatsapp mr-2 text-emerald-500 text-xl"></i>
+                            Consulta Directa
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Graphic Presentation -->
+                <div class="relative flex justify-center lg:justify-end">
+                    <div class="absolute -top-12 -left-12 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
+                    <div class="absolute -bottom-12 right-12 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-blob"></div>
+                    
+                    <div class="relative bg-white border border-slate-100 rounded-3xl p-6 shadow-2xl max-w-md w-full">
+                        <!-- Simulated Delivery Promo Card -->
+                        <div class="flex items-center space-x-4 border-b border-slate-100 pb-4 mb-4">
+                            <div class="bg-emerald-50 text-emerald-600 p-3 rounded-2xl">
+                                <i class="fa-solid fa-truck-fast text-2xl animate-bounce"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900">Entregas en Santa Cruz</h3>
+                                <p class="text-xs text-slate-500">Radial 26, cuarto anillo y avenidas aledañas</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Mini Checklist for conversion -->
+                        <ul class="space-y-3">
+                            <li class="flex items-start space-x-3 text-sm text-slate-600">
+                                <span class="bg-indigo-100 text-brand-600 rounded-full p-1"><i class="fa-solid fa-check text-xs"></i></span>
+                                <span>Agregas al carrito sin registrar cuentas molestas.</span>
+                            </li>
+                            <li class="flex items-start space-x-3 text-sm text-slate-600">
+                                <span class="bg-indigo-100 text-brand-600 rounded-full p-1"><i class="fa-solid fa-check text-xs"></i></span>
+                                <span>Exportas tu pedido con un click directo a WhatsApp.</span>
+                            </li>
+                            <li class="flex items-start space-x-3 text-sm text-slate-600">
+                                <span class="bg-indigo-100 text-brand-600 rounded-full p-1"><i class="fa-solid fa-check text-xs"></i></span>
+                                <span>Coordinas la entrega y método de pago cómodamente.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST PILLARS -->
+    <section class="py-10 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="flex items-center space-x-4 p-4">
+                    <div class="bg-brand-100 text-brand-700 h-12 w-12 rounded-2xl flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-bolt text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900">Compra Sin Fricciones</h4>
+                        <p class="text-xs text-slate-500">Agregas productos y envías tu pedido listo en segundos.</p>
+                    </div>
+                </div>
+                <!-- Pillar 2 -->
+                <div class="flex items-center space-x-4 p-4">
+                    <div class="bg-amber-100 text-amber-700 h-12 w-12 rounded-2xl flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-store text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900">Local Establecido</h4>
+                        <p class="text-xs text-slate-500">Garantía de calidad en útiles de marcas reconocidas.</p>
+                    </div>
+                </div>
+                <!-- Pillar 3 -->
+                <div class="flex items-center space-x-4 p-4">
+                    <div class="bg-emerald-100 text-emerald-700 h-12 w-12 rounded-2xl flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-map-location-dot text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900">Ubicación Estratégica</h4>
+                        <p class="text-xs text-slate-500">Radial 26, cuarto anillo (Avenida Ovideo Barbery).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT CATALOG -->
+    <section id="catalogo" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Nuestros Útiles Escolares Destacados
+                </h2>
+                <div class="w-16 h-1.5 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-600 mt-4 text-base">
+                    Selecciona los productos y cantidades que necesitas. El carrito calculará automáticamente tu presupuesto total en Bolivianos.
+                </p>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="group bg-white border border-slate-100 rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-brand-50 text-brand-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Escolar</div>
+                    <div>
+                        <!-- SVG Representing Notebook -->
+                        <div class="bg-slate-50 rounded-2xl aspect-[4/3] flex items-center justify-center mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+                            <svg class="w-24 h-24 text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5V15a2 2 0 0 1 2-2h14" />
+                                <path d="M20 15V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v15.5a1.5 1.5 0 0 0 1.5 1.5H18" />
+                                <path d="M20 20H5.5" />
+                                <circle cx="12" cy="7" r="1" fill="currentColor" />
+                                <circle cx="12" cy="11" r="1" fill="currentColor" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Cuadernos de Alta Resistencia</h3>
+                        <p class="text-sm text-slate-500 mt-2">Perfectos para tareas diarias, hojas de calidad y gran durabilidad.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 block font-semibold">Precio</span>
+                            <span class="text-2xl font-black text-slate-900">26 <span class="text-sm font-semibold text-slate-500">Bs.</span></span>
+                        </div>
+                        <button onclick="addToCart(1, 'Cuaderno Escolar', 26)" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-5 py-3 rounded-2xl shadow-lg shadow-brand-500/10 active:scale-95 transition-all duration-200">
+                            <i class="fa-solid fa-plus mr-1.5"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="group bg-white border border-slate-100 rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-brand-50 text-brand-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full font-sans">Dibujo</div>
+                    <div>
+                        <!-- SVG Representing Colored Pencils -->
+                        <div class="bg-slate-50 rounded-2xl aspect-[4/3] flex items-center justify-center mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+                            <svg class="w-24 h-24 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m15 22-4-4 4-4" />
+                                <path d="M9 18h11" />
+                                <path d="M20 6h-6" />
+                                <path d="m11 10-4-4 4-4" />
+                                <path d="M5 6h11" />
+                                <path d="M9 12h11" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Lápices de Colores (Set)</h3>
+                        <p class="text-sm text-slate-500 mt-2">Estuche de colores intensos, minas blandas y excelente cobertura artística.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 block font-semibold">Precio</span>
+                            <span class="text-2xl font-black text-slate-900">25 <span class="text-sm font-semibold text-slate-500">Bs.</span></span>
+                        </div>
+                        <button onclick="addToCart(2, 'Lápices de Colores (Set)', 25)" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-5 py-3 rounded-2xl shadow-lg shadow-brand-500/10 active:scale-95 transition-all duration-200">
+                            <i class="fa-solid fa-plus mr-1.5"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="group bg-white border border-slate-100 rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-brand-50 text-brand-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Organización</div>
+                    <div>
+                        <!-- SVG Representing Folders / Folder Sheets -->
+                        <div class="bg-slate-50 rounded-2xl aspect-[4/3] flex items-center justify-center mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+                            <svg class="w-24 h-24 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 22V4c0-.5.2-1 .6-1.4C5 2.2 5.5 2 6 2h12c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4v18l-8-4-8 4z" />
+                                <line x1="8" y1="6" x2="16" y2="6" />
+                                <line x1="8" y1="10" x2="16" y2="10" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Hojas de Carpeta (Paquete)</h3>
+                        <p class="text-sm text-slate-500 mt-2">Paquete de hojas perforadas, con margen reforzado y líneas nítidas.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 block font-semibold">Precio</span>
+                            <span class="text-2xl font-black text-slate-900">40 <span class="text-sm font-semibold text-slate-500">Bs.</span></span>
+                        </div>
+                        <button onclick="addToCart(3, 'Hojas de Carpeta', 40)" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-5 py-3 rounded-2xl shadow-lg shadow-brand-500/10 active:scale-95 transition-all duration-200">
+                            <i class="fa-solid fa-plus mr-1.5"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="group bg-white border border-slate-100 rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-brand-50 text-brand-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Escritura</div>
+                    <div>
+                        <!-- SVG Representing Pen & Pencil -->
+                        <div class="bg-slate-50 rounded-2xl aspect-[4/3] flex items-center justify-center mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+                            <svg class="w-24 h-24 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 20h9" />
+                                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Bolígrafos y Lápiz para escribir</h3>
+                        <p class="text-sm text-slate-500 mt-2">Kit esencial de escritura con trazo suave e ideal para caligrafía escolar.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 block font-semibold">Precio</span>
+                            <span class="text-2xl font-black text-slate-900">3 <span class="text-sm font-semibold text-slate-500">Bs.</span></span>
+                        </div>
+                        <button onclick="addToCart(4, 'Bolígrafo y Lápiz (Unit)', 3)" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-5 py-3 rounded-2xl shadow-lg shadow-brand-500/10 active:scale-95 transition-all duration-200">
+                            <i class="fa-solid fa-plus mr-1.5"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="group bg-white border border-slate-100 rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-brand-50 text-brand-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Impresiones</div>
+                    <div>
+                        <!-- SVG Representing Bond Paper Ream -->
+                        <div class="bg-slate-50 rounded-2xl aspect-[4/3] flex items-center justify-center mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+                            <svg class="w-24 h-24 text-rose-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                                <line x1="10" y1="9" x2="8" y2="9" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Hojas de Papel Bond (Resma)</h3>
+                        <p class="text-sm text-slate-500 mt-2">Papel ultra blanco de alto gramaje para fotocopias e impresiones nítidas.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 block font-semibold">Precio</span>
+                            <span class="text-2xl font-black text-slate-900">40 <span class="text-sm font-semibold text-slate-500">Bs.</span></span>
+                        </div>
+                        <button onclick="addToCart(5, 'Hojas Papel Bond (Resma)', 40)" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-5 py-3 rounded-2xl shadow-lg shadow-brand-500/10 active:scale-95 transition-all duration-200">
+                            <i class="fa-solid fa-plus mr-1.5"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="group bg-white border border-slate-100 rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-brand-50 text-brand-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full font-sans">Manualidades</div>
+                    <div>
+                        <!-- SVG Representing Colored Cards -->
+                        <div class="bg-slate-50 rounded-2xl aspect-[4/3] flex items-center justify-center mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+                            <svg class="w-24 h-24 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M3 9h18" />
+                                <path d="M9 21V9" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Cartulinas de Colores</h3>
+                        <p class="text-sm text-slate-500 mt-2">Excelente gramaje y variedad cromática para trabajos manuales y creativos.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 block font-semibold">Precio</span>
+                            <span class="text-2xl font-black text-slate-900">5 <span class="text-sm font-semibold text-slate-500">Bs.</span></span>
+                        </div>
+                        <button onclick="addToCart(6, 'Cartulinas de Colores', 5)" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-5 py-3 rounded-2xl shadow-lg shadow-brand-500/10 active:scale-95 transition-all duration-200">
+                            <i class="fa-solid fa-plus mr-1.5"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE-OVER / SHOPPING CART DRAWER -->
+    <div id="cart-drawer-overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-all duration-300"></div>
+    
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white z-50 shadow-2xl translate-x-full drawer-transition flex flex-col">
+        <!-- Drawer Header -->
+        <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-cart-shopping text-xl text-brand-600"></i>
+                <h2 class="text-lg font-bold text-slate-900">Tu Pedido Actual</h2>
+            </div>
+            <button onclick="toggleCart(false)" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Content (Product List) -->
+        <div id="cart-items" class="flex-1 overflow-y-auto px-6 py-4 space-y-4 custom-scrollbar">
+            <!-- Dynamic elements will load here -->
+            <div class="h-full flex flex-col items-center justify-center text-center py-12 text-slate-400">
+                <i class="fa-solid fa-basket-shopping text-5xl mb-4 text-slate-300"></i>
+                <p class="text-sm font-medium">Tu carrito está esperando útiles.</p>
+                <p class="text-xs text-slate-400 mt-1">¡Agrega algunos productos del catálogo!</p>
+            </div>
+        </div>
+
+        <!-- Drawer Footer / Summary & Actions -->
+        <div class="p-6 bg-slate-50 border-t border-slate-100 space-y-4">
+            <div class="space-y-2">
+                <div class="flex justify-between text-sm text-slate-600">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal" class="font-semibold text-slate-900">0.00 Bs.</span>
+                </div>
+                <div class="flex justify-between text-base text-slate-900 font-bold pt-2 border-t border-slate-200">
+                    <span>Monto Total</span>
+                    <span id="cart-total" class="text-lg text-brand-600">0.00 Bs.</span>
+                </div>
+            </div>
+
+            <!-- Delivery fields for customized output -->
+            <div class="space-y-2 pt-2">
+                <label for="delivery-name" class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider">Nombre del Alumno/Cliente</label>
+                <input type="text" id="delivery-name" placeholder="Ej. Carlos Mendoza" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+            </div>
+
+            <!-- CTA Order button -->
+            <button onclick="checkoutOrder()" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base rounded-2xl shadow-xl shadow-emerald-600/20 flex items-center justify-center space-x-2 active:scale-95 transition-all duration-200">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Finalizar Pedido por WhatsApp</span>
+            </button>
+            <p class="text-[10px] text-center text-slate-400 leading-normal">
+                Al hacer click se generará el desglose ordenado de tu compra para coordinar el retiro o envío a domicilio de inmediato.
+            </p>
+        </div>
+    </aside>
+
+    <!-- ABOUT & LOCATION SECTION -->
+    <section id="contacto" class="py-16 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Info Section -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900">Librería y Papelería Eliza</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Estamos comprometidos con la educación de nuestra comunidad. Brindamos una atención rápida y amable, asegurando que todos los estudiantes de Santa Cruz cuenten con los mejores insumos para su año lectivo.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="text-brand-600 mt-1"><i class="fa-solid fa-location-dot text-lg"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Nuestra Dirección</h4>
+                                <p class="text-sm text-slate-500">Radial 26, cuarto anillo, Avenida Ovideo Barbery</p>
+                                <span class="text-xs text-brand-500 font-semibold">Santa Cruz de la Sierra, Bolivia</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-brand-600 mt-1"><i class="fa-solid fa-phone text-lg"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Contacto Directo</h4>
+                                <p class="text-sm text-slate-500">63485158</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-brand-600 mt-1"><i class="fa-solid fa-clock text-lg"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Horarios de Atención</h4>
+                                <p class="text-sm text-slate-500">Lunes a Sábado: 8:00 AM - 7:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Embed / Simulated Location Card -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-2 text-emerald-600 font-bold mb-3">
+                            <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+                            <span class="text-sm">Ubicación Verificada</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900">¿Cómo llegar a nuestra papelería?</h4>
+                        <p class="text-xs text-slate-400 mt-1 mb-4">Radial 26 cuarto anillo avenida ovideo barbery.</p>
+                    </div>
+
+                    <!-- Placeholder Map -->
+                    <div class="w-full bg-slate-100 rounded-2xl h-56 flex flex-col items-center justify-center text-center text-slate-400 border border-dashed border-slate-200">
+                        <i class="fa-solid fa-map-marked-alt text-4xl mb-2 text-slate-300"></i>
+                        <span class="text-xs font-semibold text-slate-600 px-3">Radial 26 cuarto anillo avenida ovideo barbery</span>
+                        <a href="https://maps.google.com/?q=Radial+26+cuarto+anillo+avenida+ovideo+barbery+Santa+Cruz+Bolivia" target="_blank" class="mt-4 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl shadow-md transition-all">
+                            Abrir en Google Maps <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-slate-800">
+                <div class="space-y-3">
+                    <div class="flex items-center justify-center md:justify-start space-x-2 text-white">
+                        <i class="fa-solid fa-book-open text-xl text-brand-500"></i>
+                        <span class="text-lg font-bold tracking-tight">Librería Eliza</span>
+                    </div>
+                    <p class="text-xs leading-relaxed max-w-sm mx-auto md:mx-0">
+                        Tu tienda de confianza en Santa Cruz de la Sierra. Nos dedicamos a simplificar tus compras escolares con innovación digital.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center md:items-start space-y-2">
+                    <h4 class="text-xs font-bold uppercase text-white tracking-widest mb-2">Accesos Rápidos</h4>
+                    <a href="#catalogo" class="text-xs hover:text-white transition-colors">Catálogo Escolar</a>
+                    <a href="#contacto" class="text-xs hover:text-white transition-colors">Nuestra Dirección</a>
+                </div>
+                <div class="flex flex-col items-center md:items-start space-y-2">
+                    <h4 class="text-xs font-bold uppercase text-white tracking-widest mb-2">Contacto Directo</h4>
+                    <span class="text-xs"><i class="fa-solid fa-phone mr-2 text-brand-500"></i> 63485158</span>
+                    <span class="text-xs"><i class="fa-solid fa-map-pin mr-2 text-brand-500"></i> Radial 26 cuarto anillo avenida ovideo barbery</span>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-between text-xs space-y-4 md:space-y-0">
+                <span>&copy; 2026 Librería y Papelería Eliza. Todos los derechos reservados.</span>
+                <span>Desarrollado con amor por Elizabeth Poquiviqui Jimenez</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BADGE WITH ON-LINE PULSING SIMULATION -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-2">
+        <!-- Message Box Simulation -->
+        <div id="cta-online-badge" class="bg-white px-3 py-2 rounded-2xl shadow-xl border border-slate-100 flex items-center space-x-2 animate-bounce hover:scale-105 transition-transform duration-200">
+            <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span class="text-[11px] font-bold text-slate-800">¡Hola! Estoy online</span>
+        </div>
+        
+        <!-- Main Floating Action Button -->
+        <a href="https://wa.me/59163485158?text=Hola%20Librería%20Eliza,%20deseo%20hacer%20una%20consulta." target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white h-14 w-14 rounded-full shadow-2xl flex items-center justify-center relative group active:scale-90 transition-all duration-200" aria-label="Abrir WhatsApp">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+        </a>
+    </div>
+
+    <!-- CUSTOM TOAST CONTAINER FOR DYNAMIC NOTIFICATIONS -->
+    <div id="toast-container" class="fixed bottom-6 left-6 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Shopping Cart State
+        let cart = [];
+        
+        // WhatsApp Business Setup
+        const WHATSAPP_PHONE = "59163485158";
+
+        // Load cart items from localStorage on window initialization
+        window.onload = function () {
+            const savedCart = localStorage.getItem('eliza_cart');
+            if (savedCart) {
+                try {
+                    cart = JSON.parse(savedCart);
+                    updateCartUI();
+                } catch (e) {
+                    cart = [];
+                }
+            }
+        };
+
+        // Open/Close Cart Drawer with elegant transitions
+        function toggleCart(isOpen) {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-drawer-overlay');
+            
+            if (isOpen) {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                overlay.classList.add('opacity-100');
+                drawer.classList.remove('translate-x-full');
+                drawer.classList.add('translate-x-0');
+            } else {
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.remove('translate-x-0');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // Add Product to Cart
+        function addToCart(id, name, price) {
+            // Find if item already exists
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            // Save state, update UI & notify user
+            saveCart();
+            updateCartUI();
+            showToast(`¡Se agregó ${name} al carrito!`);
+            
+            // Automatically open shopping drawer as specified in CRO layout
+            setTimeout(() => {
+                toggleCart(true);
+            }, 300);
+        }
+
+        // Increment or decrement quantity
+        function updateQuantity(id, change) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    saveCart();
+                    updateCartUI();
+                }
+            }
+        }
+
+        // Remove item entirely
+        function removeFromCart(id) {
+            const item = cart.find(item => item.id === id);
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCartUI();
+            if (item) {
+                showToast(`Se eliminó ${item.name} del pedido.`);
+            }
+        }
+
+        // Save State in Web Storage
+        function saveCart() {
+            localStorage.setItem('eliza_cart', JSON.stringify(cart));
+        }
+
+        // Update UI dynamic values & badges
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartBadge = document.getElementById('cart-badge');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+            const cartTotal = document.getElementById('cart-total');
+            
+            // Empty Cart State
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-center py-12 text-slate-400">
+                        <i class="fa-solid fa-basket-shopping text-5xl mb-4 text-slate-300"></i>
+                        <p class="text-sm font-medium">Tu carrito está esperando útiles.</p>
+                        <p class="text-xs text-slate-400 mt-1">¡Agrega algunos productos del catálogo!</p>
+                    </div>
+                `;
+                cartBadge.classList.add('scale-0');
+                cartBadge.classList.remove('scale-100');
+                cartBadge.innerText = "0";
+                cartSubtotal.innerText = "0.00 Bs.";
+                cartTotal.innerText = "0.00 Bs.";
+                return;
+            }
+
+            // Populate Cart Items
+            let itemsHtml = '';
+            let totalAmount = 0;
+            let totalItems = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
+                totalItems += item.quantity;
+
+                itemsHtml += `
+                    <div class="flex items-center space-x-4 p-3 bg-slate-50 rounded-2xl border border-slate-100/80 hover:bg-slate-100/50 transition-colors">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-bold text-slate-900 truncate">${item.name}</h4>
+                            <p class="text-xs text-slate-500 font-semibold">${item.price} Bs. c/u</p>
+                        </div>
+                        
+                        <!-- Quantifier Section -->
+                        <div class="flex items-center bg-white border border-slate-200 rounded-xl px-2 py-1 space-x-2.5">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="text-slate-400 hover:text-slate-600 p-0.5" aria-label="Disminuir">
+                                <i class="fa-solid fa-minus text-xs"></i>
+                            </button>
+                            <span class="text-sm font-bold text-slate-800 w-4 text-center">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="text-slate-400 hover:text-slate-600 p-0.5" aria-label="Aumentar">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Total price & Delete -->
+                        <div class="flex flex-col items-end space-y-1">
+                            <span class="text-sm font-bold text-slate-900">${itemTotal} Bs.</span>
+                            <button onclick="removeFromCart(${item.id})" class="text-slate-400 hover:text-rose-500 text-xs transition-colors" aria-label="Eliminar item">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartItemsContainer.innerHTML = itemsHtml;
+            
+            // Update Badges & Totals
+            cartBadge.innerText = totalItems;
+            cartBadge.classList.remove('scale-0');
+            cartBadge.classList.add('scale-100');
+            
+            cartSubtotal.innerText = `${totalAmount.toFixed(2)} Bs.`;
+            cartTotal.innerText = `${totalAmount.toFixed(2)} Bs.`;
+        }
+
+        // Submit WhatsApp checkout order nicely formatted
+        function checkoutOrder() {
+            if (cart.length === 0) {
+                showToast("¡Tu carrito está vacío! Por favor agrega algún producto.");
+                return;
+            }
+
+            const clientNameInput = document.getElementById('delivery-name').value.trim();
+            const clientName = clientNameInput ? clientNameInput : "Cliente Invitado";
+
+            // Title and header format
+            let message = `¡Hola, *Librería y Papelería Eliza*! 📚✨\n`;
+            message += `Me gustaría realizar un pedido con el siguiente detalle:\n\n`;
+            message += `👤 *Cliente:* ${clientName}\n`;
+            message += `📍 *Ubicación del local:* Radial 26 cuarto anillo, Av. Ovideo Barbery\n`;
+            message += `──────────────────────\n`;
+            
+            let totalAmount = 0;
+            
+            // Build the table style list of products
+            cart.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                totalAmount += subtotal;
+                message += `${index + 1}. *${item.name}*\n`;
+                message += `   └─ 📦 Cant: ${item.quantity}  x  ${item.price} Bs.  =  *${subtotal} Bs.*\n`;
+            });
+
+            message += `──────────────────────\n`;
+            message += `💵 *Monto Total:* *${totalAmount.toFixed(2)} Bs.*\n\n`;
+            message += `Por favor, confírmenme la disponibilidad de los productos para coordinar la entrega. ¡Muchas gracias!`;
+
+            // URI Encoding
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`;
+
+            // Open in WhatsApp
+            window.open(waUrl, '_blank');
+        }
+
+        // Custom Toast system
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "bg-slate-900/95 text-white text-xs font-bold py-3.5 px-5 rounded-2xl shadow-2xl flex items-center space-x-3 pointer-events-auto transform translate-y-4 opacity-0 transition-all duration-300 border border-slate-800";
+            
+            toast.innerHTML = `
+                <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            // Animate In
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 10);
+
+            // Animate Out & Remove
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
