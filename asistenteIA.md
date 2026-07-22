@@ -45,10 +45,14 @@ Nuestro diferencial principal es: [Diferencial].
 Enlaces clave: [Links].
 
 # INSTRUCCIONES COMPLEMENTARIAS
-Radial 26, cuarto anillo, Avenida Ovideo Barbery
+
 
-Santa Cruz de la Sierra, Bolivia
-https://www.google.com/maps/@-17.7518533,-63.1895231,17z?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D
+Avenida ovideo barbery Radial 26
+cuarto anillo
+Santa Cruz de la Sierra
+-17.749649, -63.186902
+
+
 debe mandar el enlace que lo lleve directamente a gogle maps 
 
 Contacto Directo
