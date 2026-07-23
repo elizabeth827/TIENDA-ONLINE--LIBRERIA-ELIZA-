@@ -50,7 +50,7 @@ Enlaces clave: [Links].
 Avenida ovideo barbery Radial 26
 cuarto anillo
 Santa Cruz de la Sierra
--17.749649, -63.186902
+-17.749649, -63.186902 enlace que te lleve directo a google maps 
 
 
 debe mandar el enlace que lo lleve directamente a gogle maps 
@@ -60,7 +60,7 @@ Contacto Directo
 
 Horarios de Atención
 Lunes a Sábado: 8:00 AM - 7:00 PM
-ENVIAR EL PEDIDO AL WHATSAPP UTILIZANDO EL SIGUIENTE ENLACE WA.ME/591 63485158 al final del pedido 
+ENVIAR EL PEDIDO AL WHATSAPP UTILIZANDO EL SIGUIENTE ENLACE WA.ME/591 63485158 al final del pedido que me lleve directo a whatsapp
 
 ENVIAR EL PEDIDO EN TEXTO CON EL ENLACE 
 EL ASISTENTE DEBE RESPONDER CON MENOS DE 25 PALABRAS 
