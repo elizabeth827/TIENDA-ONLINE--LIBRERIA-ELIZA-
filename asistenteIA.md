@@ -50,7 +50,7 @@ Enlaces clave: [Links].
 Avenida ovideo barbery Radial 26
 cuarto anillo
 Santa Cruz de la Sierra
--17.749649, -63.186902 enlace que te lleve directo a google maps 
+https://share.google/iF0tyi7567oSeMuhk
 
 
 debe mandar el enlace que lo lleve directamente a gogle maps 
